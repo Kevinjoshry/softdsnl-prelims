@@ -1,206 +1,46 @@
-# 🎓 Final Prelim Activity: Build a Machine Learning API with Your Own Dataset
+"""
+Car Performance Prediction
+It predicts the car's performance based on speed, horsepower and year of release.
 
-## 🧠 Objective
+This dataset contains information about various Toyota car models. Each record represents a specific car model and includes numerical attributes related to its performance and production year. The dataset is used to train a machine learning model that can predict the model of a car based on its specifications.
 
-This activity is your final output for the Prelims. You will:
+horsepower The engine power of the car, typically measured in horsepower (HP). Indicates the strength of the engine.
 
-- Create or collect your own dataset (minimum 50 rows and 3 features)
-- Visualize your dataset using **at least three types of visualizations**
-- Train a machine learning model using **scikit-learn**
-- Save the trained model and label encoder using **joblib**
-- Build a Django REST API that serves predictions based on your model
-- Test the API using **Postman**
-- Submit a well-documented GitHub repository
+speed: The top speed the car can achieve, measured in kilometers per hour (km/h).
 
----
+year: The year the car model was released. Helps identify the era or generation of the model.
 
-## ✅ Requirements
+Target Label:
 
-### 📊 Dataset
+model (string): The name of the Toyota car model (e.g., Camry, Corolla, Supra). This is the value the machine learning model is trained to predict.
 
-- Minimum of **50 rows**
-- At least **3 numeric features**
-- One target column (label/class to predict)
-- Can be:
-  - Created manually (CSV)
-  - Collected from a public source (e.g., UCI, Kaggle)
-  - Synthesized or simulated (e.g., random numeric traits and labels)
-- Save the file as `dataset.csv`
+Reflection:
 
----
+Why did you choose this dataset?
+I chose this dataset because I have a strong interest in cars and their various specifications.
+Working with car data allowed me to engage with a topic I’m passionate about while learning how 
+to apply machine learning techniques. This dataset, which includes features like horsepower, 
+speed, and year of release, provided a practical and relatable example to explore prediction 
+models and data visualization.
 
-### 📈 Visualizations
+What did you learn?
+Through this project, I learned how to preprocess data, train a machine learning model, and 
+evaluate its predictions. I also gained experience with data visualization tools like seaborn 
+and matplotlib, which helped me better understand the relationships between different car 
+features. Additionally, I improved my debugging skills, especially when handling errors related 
+to data formats and plotting functions.
 
-You must include **at least 3 different visualizations**, such as:
-- Histogram
-- Pairplot
-- Correlation heatmap
-- Boxplot
-- Scatterplot
-- Confusion matrix (for classification)
+What were the challenges you encountered?
+One of the main challenges was ensuring that the dataset was properly formatted and that all 
+required features were included when training and predicting. Debugging errors related to 
+visualization, such as using unsupported arguments in plotting functions, was also a hurdle. 
+Moreover, working with categorical data like car models required transforming text labels into 
+numeric codes, which took some trial and error to get right.
 
-Use any combination of `matplotlib`, `seaborn`, or `pandas`.
-
----
-
-### 🧪 Model Training
-
-Create a script named `train_model.py` that:
-- Loads the dataset from `dataset.csv`
-- Encodes the label if needed (using `LabelEncoder`)
-- Trains a model (e.g., RandomForestClassifier or other)
-- Saves the trained model as `model.pkl`
-- Saves the label encoder as `label_encoder.pkl` (if applicable)
-- Generates and saves visualizations (optional)
-
----
-
-### 🌐 Django API
-
-Build a Django REST API with the following:
-
-- A single endpoint: `POST /api/predict/`
-- Accepts 3 feature inputs via JSON
-- Loads `model.pkl` and `label_encoder.pkl`
-- Returns a prediction (decoded label or numeric value)
-
-Use Django REST Framework for the API logic.
-
-You do **not** need to deploy the API. Just run locally and test with Postman.
-
----
-
-## 📁 Recommended Folder Structure
-
-```
-final-ml-api-project/
-├── dataset.csv                   # Your dataset
-├── train_model.py                # Loads data, visualizes, trains and saves model
-├── model.pkl                     # Saved model
-├── label_encoder.pkl             # Saved label encoder (if used)
-├── requirements.txt              # All libraries used
-├── README.md                     # This file
-├── report/                       # Screenshots folder
-│   ├── visualization1.png
-│   ├── visualization2.png
-│   ├── visualization3.png
-│   ├── postman1.png
-│   ├── postman2.png
-│   └── ...
-└── ml_api_project/               # Django REST API project
-    ├── manage.py
-    ├── ml_api_project/
-    │   ├── settings.py
-    │   └── urls.py
-    └── ml_api/
-        ├── views.py
-        ├── urls.py
-        ├── apps.py
-        └── ...
-```
-
----
-
-## 🧪 Sample Postman Test
-
-POST to: `http://localhost:8000/api/predict/`
-
-**JSON body example:**
-```json
-{
-  "feature1": 5.1,
-  "feature2": 3.5,
-  "feature3": 1.4
-}
-```
-
-**Sample response:**
-```json
-{
-  "prediction": "setosa"
-}
-```
-
-Take at least **2–3 screenshots** of valid request/response results and include them in the `report/` folder or embed them in the README.
-
----
-
-## 📝 What to Submit
-
-- A GitHub repository with:
-  - `dataset.csv`
-  - `train_model.py`
-  - Saved `.pkl` files
-  - Working Django project with API
-  - `requirements.txt`
-  - At least 3 visualizations
-  - A `report/` folder or embedded screenshots in the README
-  - This completed `README.md`
-
----
-
-## 📄 README Format (this file)
-
-Make sure your `README.md` includes the following:
-
-- **Project Title and Description**
-- **Description of your dataset**
-- **Description of features and target label**
-- **Screenshots of visualizations (or linked images from `report/`)**
-- **Sample API input/output (Postman screenshots or JSON)**
-- **Reflection answers:**
-  - Why did you choose this dataset?
-  - What did you learn?
-  - What were the challenges you encountered?
-  - How would you improve your project?
-
----
-
-## 📦 How to Run
-
-### 1. Create a virtual environment (optional but recommended)
-
-```bash
-python -m venv venv
-venv\Scripts\activate       # Windows
-source venv/bin/activate    # Mac/Linux
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Train the model
-
-```bash
-python train_model.py
-```
-
-### 4. Run the Django server
-
-```bash
-cd ml_api_project
-python manage.py runserver
-```
-
----
-
-## 🧠 Grading Rubric (100 pts)
-
-| Criteria                                  | Points |
-|-------------------------------------------|--------|
-| Dataset meets requirements                | 15     |
-| At least 3 unique visualizations included | 20     |
-| Model trains and saves correctly          | 15     |
-| API works and returns correct prediction  | 25     |
-| At least 2 working Postman tests          | 10     |
-| Organized project structure               | 5      |
-| README documentation                      | 5      |
-| Reflection answers                        | 5      |
-| **TOTAL**                                 | **100** |
-
----
-
-## 🙌 Good luck, and build something you're proud of!
+How would you improve your project?
+To improve the project, I would expand the dataset by incorporating more car models and 
+additional features such as fuel efficiency, weight, or engine type. A larger and more diverse 
+dataset would likely lead to better model accuracy and more insightful visualizations. 
+Furthermore, I would explore more advanced machine learning algorithms and possibly add an 
+interactive user interface for easier prediction input and result interpretation.
+"""
